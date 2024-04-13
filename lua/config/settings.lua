@@ -9,9 +9,11 @@ set spell
 set spelllang=en_us
 
 ]])
+
 vim.g.mapleader = " "
 vim.opt.number = true -- enable line numbers
 vim.wo.relativenumber = true
+vim.o.clipboard = 'unnamedplus'
 
 -- Remap for dealing with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -52,8 +54,9 @@ map("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all but the curren
 --end)
 
 
--- save like your are used to
+-- save and quit like you used to
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "v", "n", "s" }, "<C-q!>", ":q<CR>", { desc = "close file" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
@@ -66,7 +69,6 @@ map("n", "<leader>zf", "1z=", { desc = "Use first correction" })
 map("n", "<leader>zj", "]s", { desc = "Next error" })
 map("n", "<leader>zk", "[s", { desc = "Previous error" })
 map("n", "<leader>za", "zg", { desc = "Add word" })
-
 
 
 
