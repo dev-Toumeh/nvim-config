@@ -56,7 +56,7 @@ map("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all but the curren
 
 -- save and quit like you used to
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-map({ "i", "v", "n", "s" }, "<C-q!>", ":q<CR>", { desc = "close file" })
+map({ "i", "v", "n", "s" }, "<C-q>", ":q!<CR>", { desc = "close file" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
