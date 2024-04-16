@@ -7,6 +7,17 @@ return
         lspconfig.lua_ls.setup({})
         lspconfig.gopls.setup{}
         lspconfig.phpactor.setup{}
+        lspconfig.bashls.setup{
+          cmd = { "bash-language-server", "start" },
+          filetypes = { "sh" },
+          root_dir = lspconfig.util.find_git_ancestor,
+          single_file_support = true,
+          settings = {
+            bashIde = {
+              globPattern = "*@(.sh|.inc|.bash|.command)"
+            }
+          }
+        }
         lspconfig.yamlls.setup{
           cmd = {"yaml-language-server", "--stdio"},
           filetypes = {"yaml", "yaml.docker-compose"},
@@ -41,7 +52,7 @@ return
    "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "gopls", "phpactor", "yamlls"},
+      ensure_installed = { "lua_ls", "gopls", "phpactor", "yamlls", "bashls"},
       }
     end
   }
