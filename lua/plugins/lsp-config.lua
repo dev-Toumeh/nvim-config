@@ -1,3 +1,9 @@
+--  LSP plugin enriches Neovim with deep language understanding and tools to help manage code
+--  for example:
+--   * Syntax checking: Highlights syntax errors as you type.
+--   * Go-to-definition: Allows you to jump to the definition of a function or variable.
+--   * Code formatting: Automatically formats your code according to specified standards.
+
 return
 {
   {
@@ -37,9 +43,11 @@ return
           },
           single_file_support = true,
       }
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-        vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+        vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {desc = "rename the symbol"})
+        vim.keymap.set('n', '<leader>lk', vim.lsp.buf.hover, {desc = "Show hover information"})
+        vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, {desc = "Go to definition"})
+        vim.keymap.set({ 'n', 'v' }, '<leader>lc', vim.lsp.buf.code_action, {desc = "Show code actions"})
+        vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {desc = "List references with Telescope"})
       end
    },
   {
