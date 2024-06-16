@@ -69,13 +69,3 @@ map("n", "<leader>zf", "1z=", { desc = "Use first correction" })
 map("n", "<leader>zj", "]s", { desc = "Next error" })
 map("n", "<leader>zk", "[s", { desc = "Previous error" })
 map("n", "<leader>za", "zg", { desc = "Add word" })
-
-
-
-
-
-
-
-
-
-

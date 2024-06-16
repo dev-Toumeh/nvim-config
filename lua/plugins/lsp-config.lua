@@ -43,11 +43,6 @@ return
           },
           single_file_support = true,
       }
-        vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {desc = "rename the symbol"})
-        vim.keymap.set('n', '<leader>lk', vim.lsp.buf.hover, {desc = "Show hover information"})
-        vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, {desc = "Go to definition"})
-        vim.keymap.set({ 'n', 'v' }, '<leader>lc', vim.lsp.buf.code_action, {desc = "Show code actions"})
-        vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {desc = "List references with Telescope"})
       end
    },
   {
