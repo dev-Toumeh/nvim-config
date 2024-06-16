@@ -10,6 +10,9 @@ return {
 		vim.g.VM_maps = {
 			["Find Under"] = "",
 		}
-		vim.g.VM_add_cursor_at_pos_no_mappings = 1
+		--vim.g.VM_add_cursor_at_pos_no_mappings = 1
+    --vim.keymap.set("n", "<leader>mp", "<Plug>(VM-Add-Cursor-At-Pos)", {desc = "Add Cursor At Pos"})
+    --vim.keymap.set("n", "<leader>mo", "<Plug>(VM-Toggle-Mappings)", {desc = "Toggle Mapping"})
+
 	end,
 }
