@@ -45,9 +45,6 @@ map("n", "<leader>wj", "<cmd>resize -5<cr>", { desc = "Down" })
 map("n", "<leader>wh", "<cmd>vertical resize +3<cr>", { desc = "Left" })
 map("n", "<leader>wl", "<cmd>vertical resizce -3<cr>", { desc = "Right" })
 
--- buffers
-map("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all but the current buffer" })
-
 -- move over a closing element in insert mode
 map("i", "<C-l>", function()
 	return require("utils.functions").escapePair()

@@ -2,6 +2,8 @@
 -- https://esvi.ai/posts/how-i-debug-php-with-neovim/
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#php
 -- https://github.com/mfussenegger/nvim-dap-
+-- https://github.com/rcarriga/nvim-dap-ui
+
 return {
 	{
 		"mfussenegger/nvim-dap",
@@ -23,7 +25,9 @@ return {
 				return
 			end
 
-			require("dapui").setup()
+      local pluginFunc = require("utils.pluginsFunctions")
+      pluginFunc.dapui.setup()
+
 			require("dap-go").setup()
 
 			dap.adapters.php = {
@@ -35,7 +39,7 @@ return {
 			dap.configurations.php = {
 				{
 					type = "php",
-	 				request = "launch",
+					request = "launch",
 					name = "Listen for Xdebug",
 					port = 9003,
 				},
@@ -70,6 +74,7 @@ return {
 					},
 				},
 			}
+
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open()
 			end
