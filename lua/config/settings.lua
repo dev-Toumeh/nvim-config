@@ -9,6 +9,10 @@ set shiftwidth=2
 set spell
 set spelllang=en_us
 
+" folding config
+set foldlevel=99
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 ]])
 
 vim.g.mapleader = " "
