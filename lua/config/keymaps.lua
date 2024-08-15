@@ -20,15 +20,16 @@ map({"n", "v"}, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show cod
 map("n", "<leader><leader>f", vim.lsp.buf.format, { desc = "format if there is none-ls source" })
 
 -- telescope key mapping
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {desc = "search files"})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {desc = "search using grep_files"})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {desc = "search available buffers"})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "search inside of help tags"})
-vim.keymap.set("n", "<leader>fr", builtin.git_files, {desc = "search only git files"})
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {desc = "search old files"})
-vim.keymap.set("n", "<leader>fu", builtin.git_status, {desc = "open git status"})
-vim.keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, {desc = "search words inside the current file"})
-vim.keymap.set("n", "<leader>fdd", ":Telescope file_browser<CR>", {desc = "open file_browser"})
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "search files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "search using grep_files" })
+vim.keymap.set("n", "<leader>ft",  function() require('telescope.builtin').treesitter() end, { desc = "LSP function and method only" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "search available buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "search inside of help tags" })
+vim.keymap.set("n", "<leader>fr", builtin.git_files, { desc = "search only git files" })
+vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "search old files" })
+vim.keymap.set("n", "<leader>fu", builtin.git_status, { desc = "open git status" })
+vim.keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, { desc = "search words inside the current file" })
+vim.keymap.set("n", "<leader>fdd", ":Telescope file_browser<CR>", { desc = "open file_browser" })
 vim.keymap.set(
 	"n",
 	"<leader>fdc",
