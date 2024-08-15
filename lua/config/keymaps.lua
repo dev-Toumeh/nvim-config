@@ -11,13 +11,13 @@ map("n", "U", "r<CR><Esc>", { desc = "break the line" })
 map("n", "<C-k>", "<Plug>(LineJugglerMoveUp)", {desc = "Move line up"})
 map("n", "<C-j>", "<Plug>(LineJugglerMoveDown)", {desc = "Move line down"})
 
+-- LSP shortcuts dhdh
+map("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "list all implementaions" })
+map("n", "gr", require("telescope.builtin").lsp_references, { desc = "List references" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to the definition" })
-map("n", "gr",	require("telescope.builtin").lsp_references,	{ desc = "List references"})
-
--- LSP shortcuts dhdh 
-map("n", "gi",	require("telescope.builtin").lsp_implementations	,	{ desc = "list all implementaions"})
-map('n', '<leader>n', vim.lsp.buf.rename, {desc = "rename the symbol"})
-map({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action, {desc = "Show code actions"})
+map("n", "<leader><leader>n", vim.lsp.buf.rename, { desc = "rename the symbol" })
+map({"n", "v"}, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })
+map("n", "<leader><leader>f", vim.lsp.buf.format, { desc = "format if there is none-ls source" })
 
 -- telescope key mapping
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {desc = "search files"})
@@ -45,3 +45,6 @@ vim.keymap.set("n", "<F3>", dap.step_over)
 vim.keymap.set("n", "<F4>", dap.step_out)
 vim.keymap.set("n", "<F5>", dap.step_back)
 vim.keymap.set("n", "<F13>", dap.restart)
+
+map("n", "<leader><leader>n", vim.lsp.buf.rename, { desc = "rename the symbol" })
+map({ "n", "v" }, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })

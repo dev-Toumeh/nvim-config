@@ -14,9 +14,10 @@ return {
         null_ls.builtins.formatting.gofumpt, -- go
         null_ls.builtins.formatting.shfmt,  -- sh
         null_ls.builtins.formatting.phpcsfixer, -- php
-        null_ls.builtins.diagnostics.tidy, -- xml, html
+       -- null_ls.builtins.diagnostics.tidy, -- xml, html
+        null_ls.builtins.formatting.biome,
         null_ls.builtins.formatting.tidy, -- xml, html
-        null_ls.builtins.formatting.prettier, -- "javascript" "typescript", "css", "html" + related frameworks like react or vue 
+       -- null_ls.builtins.formatting.prettier, -- "javascript" "typescript", "css", "html" + related frameworks like react or vue 
         null_ls.builtins.diagnostics.djlint, --(keywords: django, go, nunjucks, twig, handlebars, mustache, angular, jinja)
       }
     })
