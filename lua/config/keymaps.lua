@@ -1,15 +1,16 @@
 local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 local has_dap, dap = pcall(require, "dap")
-  if not has_dap then
-    print("Failed to load 'dap'")
-    return
+if not has_dap then
+	print("Failed to load 'dap'")
+	return
 end
 
 -- editing the code
-map("n", "U", "r<CR><Esc>", { desc = "break the line" })
-map("n", "<C-k>", "<Plug>(LineJugglerMoveUp)", {desc = "Move line up"})
-map("n", "<C-j>", "<Plug>(LineJugglerMoveDown)", {desc = "Move line down"})
+map("n", "<C-k>", "<Plug>(LineJugglerMoveUp)", { desc = "Move line up" })
+map("n", "<C-j>", "<Plug>(LineJugglerMoveDown)", { desc = "Move line down" })
+map("n", "<C-y>j", "o<Esc>", { desc = "insert empty line after the Corsur" })
+map("n", "<C-y>k", "O<Esc>", { desc = "insert empty line before the Corsur" })
 
 -- LSP shortcuts dhdh
 map("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "list all implementaions" })
@@ -47,3 +48,9 @@ vim.keymap.set("n", "<F13>", dap.restart)
 
 map("n", "<leader><leader>n", vim.lsp.buf.rename, { desc = "rename the symbol" })
 map({ "n", "v" }, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })
+
+
+-- markdown preview 
+-- map("n", "<C-s>","<Plug>(MarkdownPreview)")
+-- map("n", "<M-s>","<Plug>(MarkdownPreviewStop)")
+-- map("n", "<C-p>","<Plug>(MarkdownPreviewToggle)")

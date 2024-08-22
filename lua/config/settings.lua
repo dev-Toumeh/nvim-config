@@ -21,16 +21,9 @@ vim.opt.number = true -- enable line numbers
 vim.o.clipboard = "unnamedplus"
 vim.o.cursorline = true
 
--- Remap for dealing with visual line wraps
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-
--- paste over currently selected text without yanking it
-map("v", "p", '"_dp')
 
 -- window
 map("n", "<leader>ws", "<cmd>split<cr>", { desc = "Horizontal split" })
@@ -51,7 +44,7 @@ map("n", "<leader>wl", "<cmd>vertical resizce -3<cr>", { desc = "Right" })
 
 -- move over a closing element in insert mode
 map("i", "<C-l>", function()
-	return require("utils.functions").escapePair()
+  return require("utils.functions").escapePair()
 end)
 
 -- Cancel search highlighting with ESC
@@ -75,38 +68,38 @@ map("n", "<leader>za", "zg", { desc = "Add word" })
 
 -- toggles
 map("n", "<leader>tn", function()
-	vim.o.number = vim.o.number == false and true or false
-	vim.o.relativenumber = vim.o.relativenumber == false and true or false
+  vim.o.number = vim.o.number == false and true or false
+  vim.o.relativenumber = vim.o.relativenumber == false and true or false
 end, { desc = "Toggle relative number" })
 map("n", "<leader>th", function()
-	utils.notify("Toggling hidden chars", vim.log.levels.INFO, "core.mappings")
-	vim.o.list = vim.o.list == false and true or false
+  utils.notify("Toggling hidden chars", vim.log.levels.INFO, "core.mappings")
+  vim.o.list = vim.o.list == false and true or false
 end, { desc = "Toggle hidden chars" })
 map("n", "<leader>tl", function()
-	utils.notify("Toggling signcolumn", vim.log.levels.INFO, "core.mappings")
-	vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
+  utils.notify("Toggling signcolumn", vim.log.levels.INFO, "core.mappings")
+  vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
 end, { desc = "Toggle signcolumn" })
 map("n", "<leader>tv", function()
-	utils.notify("Toggling virtualedit", vim.log.levels.INFO, "core.mappings")
-	vim.o.virtualedit = vim.o.virtualedit == "all" and "block" or "all"
+  utils.notify("Toggling virtualedit", vim.log.levels.INFO, "core.mappings")
+  vim.o.virtualedit = vim.o.virtualedit == "all" and "block" or "all"
 end, { desc = "Toggle virtualedit" })
 map("n", "<leader>ts", function()
-	utils.notify("Toggling spell", vim.log.levels.INFO, "core.mappings")
-	vim.o.spell = vim.o.spell == false and true or false
+  utils.notify("Toggling spell", vim.log.levels.INFO, "core.mappings")
+  vim.o.spell = vim.o.spell == false and true or false
 end, { desc = "Toggle spell" })
 map("n", "<leader>tw", function()
-	utils.notify("Toggling wrap", vim.log.levels.INFO, "core.mappings")
-	vim.o.wrap = vim.o.wrap == false and true or false
+  utils.notify("Toggling wrap", vim.log.levels.INFO, "core.mappings")
+  vim.o.wrap = vim.o.wrap == false and true or false
 end, { desc = "Toggle wrap" })
 map("n", "<leader>tc", function()
-	utils.notify("Toggling cursorline", vim.log.levels.INFO, "core.mappings")
-	vim.o.cursorline = vim.o.cursorline == false and true or false
+  utils.notify("Toggling cursorline", vim.log.levels.INFO, "core.mappings")
+  vim.o.cursorline = vim.o.cursorline == false and true or false
 end, { desc = "Toggle cursorline" })
 map("n", "<leader>tO", "<cmd>lua require('utils.functions').toggle_colorcolumn()<cr>", { desc = "Toggle colorcolumn" })
 map(
-	"n",
-	"<leader>tt",
-	"<cmd>lua require('core.plugins.lsp.utils').toggle_virtual_text()<cr>",
-	{ desc = "Toggle Virtualtext" }
+  "n",
+  "<leader>tt",
+  "<cmd>lua require('core.plugins.lsp.utils').toggle_virtual_text()<cr>",
+  { desc = "Toggle Virtualtext" }
 )
 map("n", "<leader>tS", "<cmd>windo set scb!<cr>", { desc = "Toggle Scrollbind" })
