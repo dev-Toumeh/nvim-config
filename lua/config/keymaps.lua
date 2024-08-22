@@ -15,12 +15,10 @@ map("n", "<C-j>", "<Plug>(LineJugglerMoveDown)", {desc = "Move line down"})
 map("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "list all implementaions" })
 map("n", "gr", require("telescope.builtin").lsp_references, { desc = "List references" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to the definition" })
-map("n", "<leader><leader>n", vim.lsp.buf.rename, { desc = "rename the symbol" })
-map({"n", "v"}, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })
-map("n", "<leader><leader>f", vim.lsp.buf.format, { desc = "format if there is none-ls source" })
 
 -- telescope key mapping
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "search files" })
+vim.keymap.set("n", "<leader>fl", require("telescope.builtin").resume, { desc = "open the last search" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "search using grep_files" })
 vim.keymap.set("n", "<leader>ft",  function() require('telescope.builtin').treesitter() end, { desc = "LSP function and method only" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "search available buffers" })

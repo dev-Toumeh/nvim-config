@@ -3,12 +3,16 @@
 --   * Syntax checking: Highlights syntax errors as you type.
 --   * Go-to-definition: Allows you to jump to the definition of a function or variable.
 --   * Code formatting: Automatically formats your code according to specified standards.
-
+-- 
+--   available Servers  https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 return {
   {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
+      lspconfig.gopls.setup({})
+      lspconfig.phpactor.setup({})
+      lspconfig.phpactor.setup({})
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
@@ -25,8 +29,6 @@ return {
           return require("lspconfig").util.find_git_ancestor(fname) or vim.fn.getcwd()
         end,
       })
-      lspconfig.gopls.setup({})
-      lspconfig.phpactor.setup({})
       lspconfig.bashls.setup({
         cmd = { "bash-language-server", "start" },
         filetypes = { "sh" },
@@ -57,6 +59,13 @@ return {
         },
         single_file_support = true,
       })
+      lspconfig.cssmodules_ls.setup{} -- work within js/ts files where you are importing CSS modules.
+      lspconfig.css_variables.setup{}
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+      })
     end,
   },
   {
@@ -65,11 +74,24 @@ return {
       require("mason").setup()
     end,
   },
+
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "gopls", "phpactor", "yamlls", "bashls" },
+        ensure_installed = {
+          "bashls",       -- bash-language-server
+          "cssls",        -- css-lsp
+          "cssmodules_ls", -- cssmodules-language-server
+          "gopls",        -- gopls
+          "lua_ls",       -- lua-language-server
+          "phpactor",     -- phpactor
+          "rust_analyzer", -- rust-analyzer
+          "tailwindcss",  -- tailwindcss-language-server
+          "yamlls",       -- yaml-language-server
+          "marksman",     -- marksman (Markdown LSP)
+          "css_variables", -- css-variables-language-server
+        },
       })
     end,
   },
