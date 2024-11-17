@@ -5,10 +5,16 @@
 -- https://github.com/inkarkat/vim-LineJuggler
 
 return {
-	"inkarkat/vim-LineJuggler",
-	dependencies = {
-		"inkarkat/vim-ingo-library",
-		"tpope/vim-repeat",
-		"inkarkat/vim-visualrepeat",
+	{
+		"inkarkat/vim-LineJuggler",
+		dependencies = {
+			"inkarkat/vim-ingo-library",
+			"tpope/vim-repeat",
+			"inkarkat/vim-visualrepeat",
+		},
 	},
+  {
+    "othree/html5.vim",
+    "lumiliet/vim-twig"
+  }
 }
