@@ -8,7 +8,7 @@ set softtabstop=2
 set shiftwidth=2
 set spell
 set spelllang=en_us
-
+set spelloptions=camel
 " folding config
 set foldlevel=99
 set foldmethod=expr
@@ -20,6 +20,10 @@ vim.opt.number = true -- enable line numbers
 -- vim.wo.relativenumber = true
 vim.o.clipboard = "unnamedplus"
 vim.o.cursorline = true
+
+-- Remap for dealing with visual line wraps
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- better indenting
 map("v", "<", "<gv")

@@ -13,6 +13,12 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
+-- Automatically reload the file if it was changed outside of nvim
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
+    command = "checktime"
+})
+
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
