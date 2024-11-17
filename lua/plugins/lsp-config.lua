@@ -3,16 +3,24 @@
 --   * Syntax checking: Highlights syntax errors as you type.
 --   * Go-to-definition: Allows you to jump to the definition of a function or variable.
 --   * Code formatting: Automatically formats your code according to specified standards.
--- 
+--
 --   available Servers  https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "mfussenegger/nvim-jdtls",
+    },
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.gopls.setup({})
       lspconfig.phpactor.setup({})
-      lspconfig.phpactor.setup({})
+      lspconfig.jdtls.setup({
+        cmd = { "/home/naseem91/.local/share/nvim/mason/bin/jdtls" },
+        root_dir = function()
+          return vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1])
+        end,
+      })
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
@@ -59,8 +67,8 @@ return {
         },
         single_file_support = true,
       })
-      lspconfig.cssmodules_ls.setup{} -- work within js/ts files where you are importing CSS modules.
-      lspconfig.css_variables.setup{}
+      lspconfig.cssmodules_ls.setup({}) -- work within js/ts files where you are importing CSS modules.
+      lspconfig.css_variables.setup({})
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       lspconfig.cssls.setup({
@@ -80,16 +88,16 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "bashls",       -- bash-language-server
-          "cssls",        -- css-lsp
+          "bashls",   -- bash-language-server
+          "cssls",    -- css-lsp
           "cssmodules_ls", -- cssmodules-language-server
-          "gopls",        -- gopls
-          "lua_ls",       -- lua-language-server
-          "phpactor",     -- phpactor
+          "gopls",    -- gopls
+          "lua_ls",   -- lua-language-server
+          "phpactor", -- phpactor
           "rust_analyzer", -- rust-analyzer
-          "tailwindcss",  -- tailwindcss-language-server
-          "yamlls",       -- yaml-language-server
-          "marksman",     -- marksman (Markdown LSP)
+          "tailwindcss", -- tailwindcss-language-server
+          "yamlls",   -- yaml-language-server
+          "marksman", -- marksman (Markdown LSP)
           "css_variables", -- css-variables-language-server
         },
       })
