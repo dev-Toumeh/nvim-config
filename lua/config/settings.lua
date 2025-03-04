@@ -9,10 +9,21 @@ set shiftwidth=2
 set spell
 set spelllang=en_us
 set spelloptions=camel
+
 " folding config
 set foldlevel=99
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" Command-line mode navigation mappings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>
 ]])
 
 vim.g.mapleader = " "
