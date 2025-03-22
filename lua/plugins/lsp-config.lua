@@ -13,7 +13,13 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-      lspconfig.gopls.setup({})
+      lspconfig.gopls.setup({
+        settings = {
+          gopls = {
+            buildFlags = { "-tags=dev" },
+          },
+        },
+      })
       lspconfig.phpactor.setup({})
       lspconfig.intelephense.setup({
         settings = {
