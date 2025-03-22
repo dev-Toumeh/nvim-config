@@ -15,6 +15,23 @@ return {
       local lspconfig = require("lspconfig")
       lspconfig.gopls.setup({})
       lspconfig.phpactor.setup({})
+      lspconfig.intelephense.setup({
+        settings = {
+          intelephense = {
+            diagnostics = { enable = true },
+            files = { maxSize = 10000000 },
+            stubs = {
+              "wordpress", "woocommerce", "acf-pro", "wordpress-globals", "wp-cli", "genesis", "polylang", "sbi",
+              "bcmath", "bz2", "calendar", "Core", "curl", "date", "dba", "dom", "enchant", "fileinfo", "filter",
+              "ftp", "gd", "gettext", "hash", "iconv", "imap", "intl", "json", "ldap", "libxml", "mbstring",
+              "mcrypt", "mysql", "mysqli", "password", "pcntl", "pcre", "PDO", "pdo_mysql", "Phar", "readline",
+              "recode", "Reflection", "regex", "session", "SimpleXML", "soap", "sockets", "sodium", "SPL",
+              "standard", "superglobals", "sysvsem", "sysvshm", "tokenizer", "xml", "xdebug", "xmlreader",
+              "xmlwriter", "yaml", "zip", "zlib"
+            }
+          }
+        }
+      })
       lspconfig.jdtls.setup({
         cmd = { "/home/naseem91/.local/share/nvim/mason/bin/jdtls" },
         root_dir = function()
