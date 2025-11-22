@@ -18,6 +18,7 @@ return {
         null_ls.builtins.formatting.tidy, -- xml, html
         null_ls.builtins.formatting.prettier, -- "javascript" "typescript", "css", "html" + related frameworks like react or vue 
         null_ls.builtins.diagnostics.djlint, --(keywords: django, go, nunjucks, twig, handlebars, mustache, angular, jinja)
+        null_ls.builtins.formatting.black, -- python
       }
     })
     vim.keymap.set("n", "<leader><leader>f", vim.lsp.buf.format, { desc = "format if there is none-ls source" })
