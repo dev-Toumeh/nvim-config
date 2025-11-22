@@ -15,14 +15,27 @@ return {
 			require("telescope").setup({
 				defaults = {
 					layout_strategy = "vertical",
-          initial_mode="normal",
+          -- initial_mode="normal",
 					layout_config = {
 						height = 0.8,
 						width = 0.8,
 						preview_cutoff = 0,
 					},
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",          -- include hidden files
+            "--glob", "!.git/",  -- but skip .git folder
+            "--glob", "!dist/",
+            "--glob", "!vendor/",
+            "--glob", "!images/",
+          },
 				},
-
 				pickers = {
 					lsp_references = {
 						previewer = true,
@@ -52,7 +65,6 @@ return {
       vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "List references" })
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "search files" })
       vim.keymap.set("n", "<leader>fl", builtin.resume, { desc = "open the last search" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "search using grep_files" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "search available buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "search inside of help tags" })
       vim.keymap.set("n", "<leader>fr", builtin.git_files, { desc = "search only git files" })
@@ -65,14 +77,19 @@ return {
       vim.keymap.set("n", "<leader>fm", function() require("telescope.builtin").lsp_document_symbols({
         symbols = { "Function" } }) end, { desc = "LSP function and method only" })
 
-        -- Tabs Browser
+      -- Tabs Browser
       vim.keymap.set("n", "<leader>ft", function() vim.cmd("Telescope telescope-tabs list_tabs") end,
         { desc = "List and navigate tabs" })
 
-        -- File Browser
+      -- File Browser
       vim.keymap.set("n", "<leader>fdd", ":Telescope file_browser<CR>", { desc = "open file_browser" })
       vim.keymap.set("n", "<leader>fdc", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
         { desc = "open file_browser with the path of the current buffer" })
+
+      vim.keymap.set("n", "<leader>fgg", builtin.live_grep, { desc = "search using grep_files" })
+      vim.keymap.set("n", "<leader>fgc", function() require('telescope.builtin').live_grep {
+          additional_args = { '--no-ignore', '--hidden' }, glob_pattern = {'*.css'}, prompt_title = 'Search all Grep in css', } end,
+        { desc = 'Search all Grep in CmakeLists.txt'})
     end,
 	},
 
