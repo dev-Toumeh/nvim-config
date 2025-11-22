@@ -46,8 +46,8 @@ return {
 
 					local function map(mode, l, r, opts)
 						opts = opts or {}
-						opts.buffer = bufnr
 						vim.keymap.set(mode, l, r, opts)
+						opts.buffer = bufnr
 					end
 
 					-- Navigation
@@ -70,8 +70,10 @@ return {
 					-- Actions
 					map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "reset the current hunk" })
 					map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "stage the current hunk" })
-					map("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "stage the current hunk virtual mode" })
-          map("v", "<leader>hr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "reset the current hunk virtual mode" })
+					map("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+            { desc = "stage the current hunk visual mode" })
+          map("v", "<leader>hr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
+            { desc = "unnstage the current hunk visual mode" })
 					map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "stage the current file" })
 					map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "stage the current file" })
 					map( "n", "<leader>hR", gitsigns.reset_buffer, { desc = "reset all the unstaged changes in the current file" })
@@ -81,6 +83,8 @@ return {
 					map("n", "<leader>hd", gitsigns.diffthis, { desc = "diff the current stage and the previews commit" })
 					map("n", "<leader>hD", function() gitsigns.diffthis("~") end)
 					map("n", "<leader>td", gitsigns.toggle_deleted)
+					map("n", "yk", gitsigns.prev_hunk, { buffer = bufnr, desc = "Go to previous hunk" })
+					map("n", "yj", gitsigns.next_hunk, { buffer = bufnr, desc = "Go to next hunk" })
 
 					-- Text object
 					map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
