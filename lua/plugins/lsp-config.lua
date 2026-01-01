@@ -20,6 +20,9 @@ return {
           },
         },
       })
+      lspconfig.htmx.setup({})
+      lspconfig.pyright.setup({})
+      lspconfig.ruff.setup({})
       lspconfig.phpactor.setup({})
       lspconfig.intelephense.setup({
         settings = {
@@ -105,23 +108,25 @@ return {
       require("mason").setup()
     end,
   },
-
+  -- Mason dwnloads & installs the servers automatically.
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "bashls",   -- bash-language-server
-          "cssls",    -- css-lsp
-          "cssmodules_ls", -- cssmodules-language-server
-          "gopls",    -- gopls
-          "lua_ls",   -- lua-language-server
-          "phpactor", -- phpactor
-          "rust_analyzer", -- rust-analyzer
-          "tailwindcss", -- tailwindcss-language-server
-          "yamlls",   -- yaml-language-server
-          "marksman", -- marksman (Markdown LSP)
+          "bashls",        -- bash-language-server
+          "cssls",         -- css-lsp
+          "cssmodules_ls", -- css-language-server
           "css_variables", -- css-variables-language-server
+          "gopls",         -- golang
+          "lua_ls",        -- lua-language-server
+          "phpactor",      -- php
+          "rust_analyzer", -- rust-analyzer
+          "tailwindcss",   -- tailwindcss-language-server
+          "yamlls",        -- yaml
+          "marksman",      -- Markdown
+          "pyright",       -- python
+          "ruff"           -- python
         },
       })
     end,

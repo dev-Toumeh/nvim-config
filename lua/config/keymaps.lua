@@ -16,9 +16,9 @@ map("n", "P", '"+p', { desc = "Past yanked test" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to the definition" })
 
 -- debug key maps
-vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
 vim.keymap.set("n", "<F1>", dap.continue)
+vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<F2>", dap.step_into)
 vim.keymap.set("n", "<F3>", dap.step_over)
 vim.keymap.set("n", "<F4>", dap.step_out)
@@ -27,6 +27,7 @@ vim.keymap.set("n", "<F13>", dap.restart)
 
 map("n", "<leader><leader>n", vim.lsp.buf.rename, { desc = "rename the symbol" })
 map({ "n", "v" }, "<leader><leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })
+map("n", "<C-y>t", ":tabnew<CR>", { noremap = true, silent = true, desc = "Open a new tab" })
 
 -- markdown preview
 -- map("n", "<C-s>","<Plug>(MarkdownPreview)")
