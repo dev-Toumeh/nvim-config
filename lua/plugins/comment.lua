@@ -1,17 +1,10 @@
 return {
-    'numToStr/Comment.nvim',
-    opts = {
-        -- add any options here
+  "numToStr/Comment.nvim",
+  opts = {
+    opleader = {
+      line = "mc",
+      block = "mb",
     },
-    config = require('Comment').setup(
-      {
-        opleader = {
-          ---Line-comment keymap
-          line = 'mc',
-          ---Block-comment keymap
-          block = 'mb',
-        },
-      }
-    ),
-    lazy = false
+  },
+  lazy = false,
 }

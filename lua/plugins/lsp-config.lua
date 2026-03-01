@@ -12,19 +12,41 @@ return {
       "mfussenegger/nvim-jdtls",
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.gopls.setup({
+      local function as_path(target)
+        if type(target) == "number" then
+          local name = vim.api.nvim_buf_get_name(target)
+          if name ~= "" then
+            return name
+          end
+          return vim.fn.getcwd()
+        end
+        if type(target) == "string" and target ~= "" then
+          return target
+        end
+        return vim.fn.getcwd()
+      end
+
+      local function project_root(target)
+        local path = as_path(target)
+        local git_dir = vim.fs.find({ ".git" }, { path = path, upward = true })[1]
+        return git_dir and vim.fs.dirname(git_dir) or vim.fn.getcwd()
+      end
+
+      vim.lsp.config("gopls", {
         settings = {
           gopls = {
             buildFlags = { "-tags=dev" },
           },
         },
       })
-      lspconfig.htmx.setup({})
-      lspconfig.pyright.setup({})
-      lspconfig.ruff.setup({})
-      lspconfig.phpactor.setup({})
-      lspconfig.intelephense.setup({
+      vim.lsp.enable("gopls")
+
+      vim.lsp.enable("htmx")
+      vim.lsp.enable("pyright")
+      vim.lsp.enable("ruff")
+      vim.lsp.enable("phpactor")
+
+      vim.lsp.config("intelephense", {
         settings = {
           intelephense = {
             diagnostics = { enable = true },
@@ -41,13 +63,19 @@ return {
           }
         }
       })
-      lspconfig.jdtls.setup({
+      vim.lsp.enable("intelephense")
+
+      vim.lsp.config("jdtls", {
         cmd = { "/home/naseem91/.local/share/nvim/mason/bin/jdtls" },
-        root_dir = function()
-          return vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1])
+        root_dir = function(target)
+          local path = as_path(target)
+          local marker = vim.fs.find({ "gradlew", ".git", "mvnw" }, { path = path, upward = true })[1]
+          return marker and vim.fs.dirname(marker) or vim.fn.getcwd()
         end,
       })
-      lspconfig.lua_ls.setup({
+      vim.lsp.enable("jdtls")
+
+      vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
             workspace = {
@@ -60,13 +88,17 @@ return {
           },
         },
         root_dir = function(fname)
-          return require("lspconfig").util.find_git_ancestor(fname) or vim.fn.getcwd()
+          return project_root(fname)
         end,
       })
-      lspconfig.bashls.setup({
+      vim.lsp.enable("lua_ls")
+
+      vim.lsp.config("bashls", {
         cmd = { "bash-language-server", "start" },
         filetypes = { "sh" },
-        root_dir = lspconfig.util.find_git_ancestor,
+        root_dir = function(fname)
+          return project_root(fname)
+        end,
         single_file_support = true,
         settings = {
           bashIde = {
@@ -74,10 +106,14 @@ return {
           },
         },
       })
-      lspconfig.yamlls.setup({
+      vim.lsp.enable("bashls")
+
+      vim.lsp.config("yamlls", {
         cmd = { "yaml-language-server", "--stdio" },
         filetypes = { "yaml", "yaml.docker-compose" },
-        root_dir = lspconfig.util.find_git_ancestor,
+        root_dir = function(fname)
+          return project_root(fname)
+        end,
         settings = {
           yaml = {
             schemas = {
@@ -93,13 +129,17 @@ return {
         },
         single_file_support = true,
       })
-      lspconfig.cssmodules_ls.setup({}) -- work within js/ts files where you are importing CSS modules.
-      lspconfig.css_variables.setup({})
+      vim.lsp.enable("yamlls")
+
+      vim.lsp.enable("cssmodules_ls") -- work within js/ts files where you are importing CSS modules.
+      vim.lsp.enable("css_variables")
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
-      lspconfig.cssls.setup({
+      vim.lsp.config("cssls", {
         capabilities = capabilities,
       })
+      vim.lsp.enable("cssls")
     end,
   },
   {

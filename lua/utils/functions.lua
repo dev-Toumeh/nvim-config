@@ -236,7 +236,7 @@ M.stopLSP = function(lsp_name)
 end
 
 M.startLSP = function(lsp_name)
-  require("lspconfig")[lsp_name].setup({})
+  vim.lsp.enable(lsp_name)
 end
 
 ---check if nested config is not nil

@@ -1,6 +1,12 @@
 local map = vim.keymap.set
 local utils = require("utils.functions")
 
+-- Ensure `nvim .` uses built-in netrw with the classic directory listing.
+vim.g.loaded_netrw = nil
+vim.g.loaded_netrwPlugin = nil
+vim.g.netrw_liststyle = 0
+vim.g.netrw_banner = 0
+
 vim.cmd([[
 set expandtab
 set tabstop=2
